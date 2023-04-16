@@ -1,4 +1,3 @@
-import math
 import numpy as np
 
 f1=open("data2angles.txt", 'r')
