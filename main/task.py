@@ -60,6 +60,7 @@ rot3 = np.matrix([                              # rot3 = identity matrix (no rot
 rot01 = pro01*rot1                              #
 rot12 = pro12*rot2                              # Rotation Matrices
 rot23 = pro23*rot3                              #
+rot03 = rot01*rot12*rot23                       #
 
 disp01 = np.matrix([                            #
     [0.0],                                      #
@@ -86,3 +87,8 @@ H03 = H01*H12*H23                               # Final Tranformation Matrix
 
 ans = np.delete(H03, 3, 0)                      # Final 3x4 Matrix
 print(ans)
+
+theta = np.degrees(-np.arcsin(rot03.item(2,0)))                                                                         #
+psi = np.degrees(-np.arctan2(rot03.item(2,1),rot03.item(2,2)))                                                          # Euler Angles
+phi = np.degrees(-np.arctan2(rot03.item(1,0)/np.cos(np.radians(theta)),rot03.item(0,0)/np.cos(np.radians(theta))))      #
+print("Euler angles: ", theta, psi, phi)
